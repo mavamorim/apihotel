@@ -37,7 +37,7 @@ class Hotel(Resource):
         if hotel is not None:        
             return { "mensagem": f"O hotel com id {hotel_id} já existe na minha lista."}
         
-        novo_hotel = {"hotel_id": hotel_id, **dados}
+        novo_hotel = HotelModel(hotel_id,**dados).json()
         hoteis.append(novo_hotel)
         return novo_hotel, 200
     
@@ -52,7 +52,7 @@ class Hotel(Resource):
             return hotel, 200
         
         # Se o hotel_id não  existe, crie o hotel
-        novo_hotel = {"hotel_id": hotel_id, **dados}
+        novo_hotel = HotelModel(hotel_id,**dados).json()
         hoteis.append(novo_hotel)
         return novo_hotel, 201
     
